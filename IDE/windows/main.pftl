@@ -1,8 +1,12 @@
 // default includes
 
 include windows;
+include windows.clock;
 include windows.console;
+include windows.date;
 include windows.file;
+include windows.gui;
+include windows.thread;
 
 include "./datas/datas.json";
 
@@ -54,6 +58,31 @@ namespace main() {
             };
             
         };
+        
+    };
+    int internet() {
+        
+        INTERNET internetClient = new INTERNET(datas.internetClientAddress, datas.internetClientPort, datas.internetClientName, internetClientError);
+        int internetClientConnected = internetClient.connect("tcp", "192...", 40000);
+        
+    };
+    int Main() {
+        
+        void run() {
+            
+            
+            
+        };
+        void stop() {
+            
+            ide.ideConsole.Write("Stopping the IDE !");
+            
+        };
+        
+    };
+    int thread() {
+        
+        
         
     };
     
