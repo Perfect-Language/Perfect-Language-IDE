@@ -4,7 +4,7 @@ include windows;
 include windows.console;
 include windows.file;
 
-include "datas.json";
+include "./datas/datas.json";
 
 
 // default vars
