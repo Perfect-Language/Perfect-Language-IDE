@@ -1,8 +1,7 @@
 // default includes
 
-#include <fstream>
-#include <string>
-#include <windows.h>
+include fstream
+include windows.h
 
 
 // main namespace
