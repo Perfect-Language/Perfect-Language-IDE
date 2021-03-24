@@ -1,7 +1,15 @@
 // default includes
 
-include fstream
-include windows.h
+include windows;
+include windows.console;
+include windows.file;
+
+include "datas.json";
+
+
+// default vars
+
+int datasJsonFile = file.read("./datas/datas.json", "utf-8", datasJsonFileError);
 
 
 // main namespace
@@ -10,15 +18,42 @@ namespace main() {
     
     int datas() {
         
-        int ideBlackThemeBackgroundColor = "";
-        int ideWhiteThemeBackgroundColor = "";
-        string windowAuthor = "AyzeLYC";
-        string windowName = "Perfect Language IDE";
+        int ideBlackThemeBackgroundColor = file.read(datasJsonFile.gui.ideBlackThemeBackgroundColor, "utf-8", ideBlackThemeBackgroundColorError);
+        int consoleMaxLines = file.read(datasJsonFile.console.maxLines, "utf-8", consoleMaxLinesError);
+        int ideGuiTheme = file.read(datasJsonFile.gui.theme, "utf-8", ideGuiThemeError);
+        int ideGuiXSize = file.read(datasJsonFile.gui.ideGuiXSize, "utf-8", ideGuiXSizeError);
+        int ideGuiYSize = file.read(datasJsonFile.gui.ideGuiYSize, "utf-8", ideGuiYSizeError);
+        int ideWhiteThemeBackgroundColor = file.read(datasJsonFile.gui.ideWhiteThemeBackgroundColor, "utf-8", ideWhiteThemeBackgroundColorError);
+        string appAuthor = file.read(datasJsonFile.app.appAuthor, "utf-8", appAuthorError);
+        string appName = file.read(datasJsonFile.app.appName, "utf-8", appNameError);
+        string appVersion = file.read(datasJsonFile.app.appVersion, "utf-8", appVersionError);
         
     };
     int ide() {
         
-        
+        GUI ideGui = new GUI(datas.ideGuiXSize, datas.ideGuiYSize);
+        CONSOLE ideConsole = new CONSOLE(datas.ideConsoleMaxLines);
+        ideConsole.maxLines = datas.consoleMaxLines;
+        ideGui.windowAuthor = datas.appAuthor;
+        ideGui.windowName = datas.appName;
+        ideGui.windowVersion = datas.appVersion;
+        if(datas.ideGuiTheme = 0) {
+            
+            ideGui.backgroundColor = datas.ideWhiteThemeBackgroundColor;
+            
+        } else {
+            
+            if (datas.ideGuiTheme = 1) {
+                
+                ideGui.backgroundColor = datas.ideBlackThemeBackgroundColor;
+                
+            } else {
+                
+                ideConsole.write("Error in the theme number !");
+                
+            };
+            
+        };
         
     };
     
