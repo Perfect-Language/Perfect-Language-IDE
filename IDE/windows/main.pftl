@@ -1,88 +1,88 @@
 // default includes
 
-include windows;
-include windows.clock;
-include windows.console;
-include windows.date;
-include windows.file;
-include windows.gui;
-include windows.thread;
+INCLUDE windows.clock;
+INCLUDE windows.console;
+INCLUDE windows.date;
+INCLUDE windows.filesystem;
+INCLUDE windows.gui;
+INCLUDE windows.internet;
+INCLUDE windows.ram;
+INCLUDE windows.thread;
+INCLUDE windows.user;
 
-include "./datas/datas.json";
-
+INCLUDE "./datas/datas.json";
 
 // default vars
 
-int datasJsonFile = file.read("./datas/datas.json", "utf-8", datasJsonFileError);
-
+int datasJsonFile = filesystem.read("./datas/datas.json", "utf-8", datasJsonFileError);
+int parameters(json) = {
+    
+    'gfs': 1, // gui full screen
+    'gh': 720, // gui height
+    'gw': 1080, // gui width
+    'itu': 0, // ide time used
+    'tn': 0, // thread number
+    'td': 'none', // thread datas
+    'uad': { // user app datas
+        
+        'ual': 'none', // user app logo
+        'uat': 'Perfect Language Application', // user app title
+        'uah': 720, // user app height
+        'uaw': 1080 // user app width
+        
+    }
+    'uite': 'f' // used ide time enabled
+    
+};
 
 // main namespace
 
-namespace main() {
+int all {
     
-    int datas() {
+    int clock {
         
-        string appAuthor = file.read(datasJsonFile.app.appAuthor, "utf-8", appAuthorError);
-        string appName = file.read(datasJsonFile.app.appName, "utf-8", appNameError);
-        string appVersion = file.read(datasJsonFile.app.appVersion, "utf-8", appVersionError);
-        int consoleMaxLines = file.read(datasJsonFile.console.maxLines, "utf-8", consoleMaxLinesError);
-        int ideBlackThemeBackgroundColor = file.read(datasJsonFile.gui.ideBlackThemeBackgroundColor, "utf-8", ideBlackThemeBackgroundColorError);
-        int ideGuiTheme = file.read(datasJsonFile.gui.theme, "utf-8", ideGuiThemeError);
-        int ideGuiXSize = file.read(datasJsonFile.gui.ideGuiXSize, "utf-8", ideGuiXSizeError);
-        int ideGuiYSize = file.read(datasJsonFile.gui.ideGuiYSize, "utf-8", ideGuiYSizeError);
-        int ideWhiteThemeBackgroundColor = file.read(datasJsonFile.gui.ideWhiteThemeBackgroundColor, "utf-8", ideWhiteThemeBackgroundColorError);
+        if (parameters.uite = t) {
+            
+            wait(1)
+            parameters.itu = parameters.itu + 1
+            
+        };
         
     };
-    int ide() {
+    int gui {
         
-        GUI ideGui = new GUI(datas.ideGuiXSize, datas.ideGuiYSize);
-        CONSOLE ideConsole = new CONSOLE(datas.ideConsoleMaxLines);
-        ideConsole.maxLines = datas.consoleMaxLines;
-        ideGui.windowAuthor = datas.appAuthor;
-        ideGui.windowName = datas.appName;
-        ideGui.windowVersion = datas.appVersion;
-        if(datas.ideGuiTheme = 0) {
+        int gui = GUI.new(parameters.gfs, parameters.gw, parameters.gh, guierror);
+        
+    };
+    int ide {
+        
+        int ua = "";
+        int createapp = THREAD.encode(ide.ua, "", encodingerror);
+        
+    };
+    int internet {
+        
+        int requestVersion = {
             
-            ideGui.backgroundColor = datas.ideWhiteThemeBackgroundColor;
+            int rvd = "{ 'request': 'version', 'datas': 'latestversion', 'error': ''}";
             
-        } else {
-            
-            if (datas.ideGuiTheme = 1) {
+        };
+        
+    };
+    int thread {
+        
+        int createThread = {
+            if (parameters.td = "none" OR parameters.td = 0) {
                 
-                ideGui.backgroundColor = datas.ideBlackThemeBackgroundColor;
+                logconsole.send("Error, the thread datas are equal to " + parameters.td);
                 
             } else {
                 
-                ideConsole.write("Error in the theme number !");
-                
+                THREAD.new(parameters.tn, parameters.td);
+            
             };
             
         };
-        
-    };
-    int internet() {
-        
-        INTERNET internetClient = new INTERNET(datas.internetClientAddress, datas.internetClientPort, datas.internetClientName, internetClientError);
-        int internetClientConnected = internetClient.connect("tcp", "192...", 40000);
-        
-    };
-    int Main() {
-        
-        void run() {
-            
-            
-            
-        };
-        void stop() {
-            
-            ide.ideConsole.Write("Stopping the IDE !");
-            
-        };
-        
-    };
-    int thread() {
-        
-        
         
     };
     
